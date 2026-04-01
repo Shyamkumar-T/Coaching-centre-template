@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching | Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body style="background:var(--clr-bg-main);">
+
+    <div id="auth-guard" style="display:none; text-align:center; padding:100px;">
+        <h2>Unauthorized Access</h2>
+        <p>You must be logged in as a student to view this page.</p>
+        <br>
+        <a href="admin-login.html" class="primary-btn">Go to Login</a>
+    </div>
+
+    <div id="dashboard-app" style="display:none; min-height: 100vh;">
+        <div style="display:flex; min-height: 100vh;">
+            <!-- Sidebar -->
+            <aside
+                style="width: 250px; background:var(--clr-secondary); color:white; padding:var(--space-md); flex-shrink:0;">
+                <div
+                    style="text-align:center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <img id="user-avatar" src=""
+                        style="width:80px; height:80px; border-radius:50%; margin: 0 auto 1rem; border:2px solid white;">
+                    <h3 id="user-name" style="color:white; font-size:1.1rem;">-</h3>
+                    <p style="font-size:0.8rem; color:rgba(255,255,255,0.7);">ID: ST-20261A</p>
+                </div>
+
+                <nav style="display:flex; flex-direction:column; gap:0.5rem;" id="dashboard-nav">
+                    <a href="#" class="sidebar-link active" data-target="overview"><i class="fa-solid fa-house"></i>
+                        Overview</a>
+                    <a href="#" class="sidebar-link" data-target="materials"><i class="fa-solid fa-book"></i> Study
+                        Materials</a>
+                    <a href="#" class="sidebar-link" data-target="tests"><i class="fa-solid fa-file-pen"></i> Mock
+                        Tests</a>
+                    <a href="#" id="logout-btn" class="sidebar-link"
+                        style="margin-top:2rem; color:var(--clr-danger);"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                </nav>
+                <style>
+                    .sidebar-link {
+                        color: rgba(255, 255, 255, 0.8);
+                        padding: 0.75rem 1rem;
+                        border-radius: var(--radius-md);
+                        display: flex;
+                        align-items: center;
+                        gap: 0.75rem;
+                        transition: var(--transition-fast);
+                        text-decoration: none;
+                    }
+
+                    .sidebar-link:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        color: white;
+                    }
+
+                    .sidebar-link.active {
+                        background: var(--clr-primary);
+                        color: white;
+                    }
+                </style>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main style="flex:1; padding:var(--space-lg); overflow-y:auto;" id="dashboard-content">
+
+                <!-- Overview Section -->
+                <div id="target-overview" class="dash-section">
+                    <h1 style="font-size:2rem; color:var(--clr-secondary); margin-bottom:var(--space-md);">Welcome back
+                        👋</h1>
+
+                    <!-- Course Info Card -->
+                    <div
+                        style="background:linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-secondary) 100%); color:white; padding:var(--space-lg); border-radius:var(--radius-lg); margin-bottom:var(--space-lg); box-shadow:var(--shadow-md);">
+                        <h3
+                            style="color:rgba(255,255,255,0.8); font-size:0.9rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.5rem;">
+                            Enrolled Course</h3>
+                        <h2 id="enrolled-course" style="font-size:1.75rem; color:white; margin-bottom:0.25rem;">-</h2>
+                        <p style="margin-bottom:1.5rem;"><i class="fa-solid fa-users-viewfinder"></i> Batch: <span
+                                id="enrolled-batch">-</span></p>
+
+                        <div style="background:rgba(255,255,255,0.2); height:8px; border-radius:10px; overflow:hidden;">
+                            <div id="course-progress" style="background:var(--clr-success); width:0%; height:100%;">
+                            </div>
+                        </div>
+                        <p style="font-size:0.8rem; margin-top:0.5rem; text-align:right;">Course Completion: <span
+                                id="course-progress-text"></span>%</p>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div
+                        style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:var(--space-md); margin-bottom:var(--space-lg);">
+                        <div
+                            style="background:white; padding:var(--space-md); border-radius:var(--radius-lg); box-shadow:var(--shadow-sm); display:flex; align-items:center; gap:1rem;">
+                            <div
+                                style="background:var(--clr-primary-light); color:var(--clr-primary); width:50px; height:50px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.5rem;">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div>
+                                <p style="color:var(--clr-text-muted); font-size:0.875rem;">Next Class</p>
+                                <h4 style="font-size:1.1rem; color:var(--clr-secondary);">Today, 4:00 PM</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Materials Section Mock -->
+                <div id="target-materials" class="dash-section" style="display:none;">
+                    <h2 style="font-size:1.75rem; color:var(--clr-secondary); margin-bottom:var(--space-md);">Study
+                        Materials</h2>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md);">
+                        <div
+                            style="background:var(--clr-bg-card); border:1px solid var(--clr-border); padding:var(--space-md); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:1rem;">
+                                <i class="fa-solid fa-file-pdf" style="font-size:2rem; color:#ef4444;"></i>
+                                <div>
+                                    <h4 style="color:var(--clr-secondary);">Physics: Kinematics Notes</h4>
+                                    <p style="font-size:0.8rem; color:var(--clr-text-muted);">Uploaded: 2 days ago • 2.4
+                                        MB</p>
+                                </div>
+                            </div>
+                            <button class="outline-btn" style="padding:0.5rem 1rem;"><i
+                                    class="fa-solid fa-download"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Portal Mock -->
+                <div id="target-tests" class="dash-section" style="display:none;">
+                    <h2 style="font-size:1.75rem; color:var(--clr-secondary); margin-bottom:var(--space-md);">Online
+                        Mock Tests</h2>
+                    <div
+                        style="background:var(--clr-bg-card); border-left:4px solid var(--clr-accent); padding:var(--space-md); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <h3 style="color:var(--clr-secondary);">Weekly Mock Test #04 (Full Syllabus)</h3>
+                            <p style="color:var(--clr-text-muted); font-size:0.9rem; margin-top:0.25rem;"><i
+                                    class="fa-regular fa-clock"></i> 180 Minutes • 300 Marks</p>
+                            <span
+                                style="display:inline-block; margin-top:0.5rem; font-size:0.75rem; background:var(--clr-danger-bg); color:var(--clr-danger); padding:0.25rem 0.5rem; border-radius:var(--radius-md); font-weight:700;">Deadline:
+                                Today 11:59 PM</span>
+                        </div>
+                        <button class="primary-btn">Start Test Now</button>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <script src="../js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = window.DB.currentUser;
+            if (!user || user.role !== 'student') {
+                document.getElementById('auth-guard').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('dashboard-app').style.display = 'block';
+
+            // Populate user data
+            document.getElementById('user-name').innerText = user.name;
+            document.getElementById('user-avatar').src = \`https://ui-avatars.com/api/?name=\${user.name.replace(' ', '+')}&background=4f46e5&color=fff\`;
+            document.getElementById('enrolled-course').innerText = user.course;
+            document.getElementById('enrolled-batch').innerText = user.batch;
+            document.getElementById('course-progress').style.width = user.progress + '%';
+            document.getElementById('course-progress-text').innerText = user.progress;
+
+            // Tab logic
+            const links = document.querySelectorAll('.sidebar-link[data-target]');
+            const sections = document.querySelectorAll('.dash-section');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    sections.forEach(s => s.style.display = 'none');
+                    document.getElementById('target-' + link.getAttribute('data-target')).style.display = 'block';
+                });
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.DB.logout();
+                window.location.href = 'admin-login.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

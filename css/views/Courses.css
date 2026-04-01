@@ -1,0 +1,155 @@
+/* ==========================================================================
+   COURSES PAGE & DETAILS STYLES
+   ========================================================================== */
+
+.page-header {
+    background-color: var(--clr-secondary);
+    color: white;
+    padding: calc(var(--space-xl) * 2) 0 var(--space-xl);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-xs);
+    color: white;
+}
+
+.page-subtitle {
+    color: var(--clr-text-muted);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.filters-bar {
+    background: var(--clr-bg-card);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    gap: var(--space-md);
+    margin-top: calc(var(--space-2xl) * -0.5);
+    position: relative;
+    z-index: 10;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    font-size: 0.875rem;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    background-color: var(--clr-bg-main);
+    color: var(--clr-text-main);
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    border-color: var(--clr-primary);
+}
+
+.courses-grid-full {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+/* Reusing course-card base styles from Home */
+
+/* Detailed Course View Mode (Optional expansion) */
+.course-detail-modal {
+    display: none;
+    /* In a real app we'd build a separate route for this, or a modal.
+       For this SPA demo, we'll open a modal. */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md);
+}
+
+.course-detail-modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: var(--clr-bg-card);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--clr-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--clr-bg-main);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--clr-text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--clr-danger);
+}
+
+.modal-body {
+    padding: var(--space-lg);
+}
+
+.syllabus-list {
+    margin-top: var(--space-sm);
+    padding-left: var(--space-lg);
+}
+
+.syllabus-list li {
+    list-style-type: decimal;
+    margin-bottom: 0.5rem;
+    color: var(--clr-text-main);
+}

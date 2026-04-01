@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | EliteAcademy ERP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/AdminLayout.css">
+    <link rel="stylesheet" href="../css/views/AdminDashboard.css">
+</head>
+
+<body class="admin-body">
+
+    <div id="admin-app-container" style="display:flex; width:100%; overflow:hidden;">
+        <!-- Sidebar and Topbar injected by AdminLayout.js -->
+
+        <div class="admin-main-wrapper">
+            <!-- Topbar injected here -->
+
+            <main class="admin-content">
+
+                <div class="admin-page-header">
+                    <div>
+                        <h1 class="admin-page-title">Dashboard Overview</h1>
+                        <p class="admin-page-subtitle">Welcome back! Here's what's happening today.</p>
+                    </div>
+                    <a href="admin-enquiries.html" class="admin-btn admin-btn-primary">
+                        <i class="fa-solid fa-plus"></i> New Enquiry
+                    </a>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card blue">
+                        <span class="stat-label">Active Students</span>
+                        <span class="stat-value" id="statStudents">—</span>
+                        <span class="stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</span>
+                    </div>
+                    <div class="stat-card amber">
+                        <span class="stat-label">New Enquiries</span>
+                        <span class="stat-value" id="statEnquiries">—</span>
+                        <span class="stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> +5 this week</span>
+                    </div>
+                    <div class="stat-card green">
+                        <span class="stat-label">Fees Collected</span>
+                        <span class="stat-value" id="statFees">—</span>
+                        <span class="stat-change up"><i class="fa-solid fa-arrow-trend-up"></i> This session</span>
+                    </div>
+                    <div class="stat-card red">
+                        <span class="stat-label">Pending Dues</span>
+                        <span class="stat-value" id="statDues">—</span>
+                        <span class="stat-change down"><i class="fa-solid fa-triangle-exclamation"></i> Requires follow-up</span>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="dashboard-grid">
+
+                    <!-- Enrollment Chart -->
+                    <div class="admin-card" style="padding:0;">
+                        <div class="chart-container">
+                            <h2 class="chart-title">Monthly Enrolments</h2>
+                            <div class="bar-chart" id="barChart">
+                                <!-- Injected by AdminDashboard.js -->
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background:#4F46E5;"></div>
+                                    Students Enrolled
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background:#c7d2fe;"></div>
+                                    Revenue (×₹10K)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Batch Occupancy -->
+                    <div class="admin-card" style="padding:0; overflow:hidden;">
+                        <div class="admin-table-header">
+                            <h2 style="margin:0;font-size:1rem;font-weight:600;">Batch Occupancy</h2>
+                        </div>
+                        <div class="occupancy-list" id="batchOccupancy">
+                            <!-- Injected by AdminDashboard.js -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Recent Enquiries -->
+                <div class="admin-table-container">
+                    <div class="admin-table-header">
+                        <h2 style="margin:0;font-size:1rem;font-weight:600;">Recent Enquiries</h2>
+                        <a href="admin-enquiries.html" class="admin-btn admin-btn-outline" style="font-size:0.8rem;">View All</a>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Course</th>
+                                <th>Counsellor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentEnquiries">
+                            <!-- Injected by AdminDashboard.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/admin-data.js"></script>
+    <script src="../js/views/AdminLayout.js"></script>
+    <script src="../js/views/AdminDashboard.js"></script>
+
+</body>
+
+</html>

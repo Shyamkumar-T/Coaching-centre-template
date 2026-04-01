@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students | EliteAcademy ERP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/AdminLayout.css">
+    <link rel="stylesheet" href="../css/views/AdminEnquiries.css">
+    <link rel="stylesheet" href="../css/views/AdminStudents.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- ─── Success Toast ─────────────────────────── -->
+    <div id="successToast" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:999;background:#10b981;color:white;padding:0.875rem 1.5rem;border-radius:0.625rem;font-weight:600;font-size:0.875rem;box-shadow:0 8px 20px rgba(0,0,0,0.15);">
+    </div>
+
+    <!-- ─── Add Student Modal ─────────────────────── -->
+    <div class="modal-backdrop" id="addStudentBackdrop">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title"><i class="fa-solid fa-user-plus" style="color:#4F46E5;margin-right:0.5rem;"></i>Add New Student</h2>
+                    <p class="modal-subtitle">Fill in the details below to enrol a student.</p>
+                </div>
+                <button class="modal-close" id="modalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="addStudentForm">
+                <div class="modal-body">
+
+                    <!-- Personal Details -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-user"></i>&nbsp; Personal Details</p>
+                        <div class="form-grid">
+                            <div class="form-field full-width">
+                                <label for="fName">Full Name *</label>
+                                <input type="text" id="fName" name="name" placeholder="e.g. Rahul Sharma" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="fPhone">Contact Number *</label>
+                                <input type="tel" id="fPhone" name="phone" placeholder="9876543210" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="fParent">Parent / Guardian Name *</label>
+                                <input type="text" id="fParent" name="parentName" placeholder="e.g. Sanjay Sharma" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="fDob">Date of Birth</label>
+                                <input type="date" id="fDob" name="dob">
+                            </div>
+                            <div class="form-field">
+                                <label for="fGender">Gender</label>
+                                <select id="fGender" name="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-field full-width">
+                                <label for="fAddress">Address</label>
+                                <input type="text" id="fAddress" name="address" placeholder="e.g. Navrangpura, Ahmedabad">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic Details -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-graduation-cap"></i>&nbsp; Course &amp; Batch Assignment</p>
+                        <div class="form-grid">
+
+                            <!-- Step 1: Course -->
+                            <div class="form-field">
+                                <label for="fCourse">Course *</label>
+                                <select id="fCourse" name="course" required>
+                                    <option value="">— Select Course —</option>
+                                    <option value="JEE">JEE (Engineering)</option>
+                                    <option value="NEET">NEET (Medical)</option>
+                                    <option value="UPSC">UPSC (Civil Services)</option>
+                                    <option value="SAT">SAT (International)</option>
+                                </select>
+                            </div>
+
+                            <!-- Step 2: Program -->
+                            <div class="form-field">
+                                <label for="fProgram">Program Type *</label>
+                                <select id="fProgram" name="program" required disabled>
+                                    <option value="">— Select Course First —</option>
+                                </select>
+                            </div>
+
+                            <!-- Step 3: Batch Year -->
+                            <div class="form-field">
+                                <label for="fBatchYear">Batch Year / Category *</label>
+                                <select id="fBatchYear" name="batchYear" required disabled>
+                                    <option value="">— Select Program First —</option>
+                                </select>
+                            </div>
+
+                            <!-- Step 4: Class -->
+                            <div class="form-field">
+                                <label for="fClass">Class *</label>
+                                <select id="fClass" name="className" required disabled>
+                                    <option value="">— Select Batch Year First —</option>
+                                </select>
+                            </div>
+
+                            <!-- Available class codes preview -->
+                            <div class="form-field full-width">
+                                <label>Available Class Codes</label>
+                                <div class="class-tags" id="classTags">
+                                    <span style="color:#94a3b8;font-size:0.8rem;">Select course, program, and batch year to see class codes</span>
+                                </div>
+                            </div>
+
+                            <!-- Batch Timing -->
+                            <div class="form-field">
+                                <label for="fTiming">Batch Timing *</label>
+                                <select id="fTiming" name="timing" required>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Full Day">Full Day</option>
+                                </select>
+                            </div>
+
+                            <!-- Target Exam Year -->
+                            <div class="form-field">
+                                <label for="fTargetYear">Target Exam Year *</label>
+                                <select id="fTargetYear" name="targetYear" required>
+                                    <option value="2026">2026</option>
+                                    <option value="2027" selected>2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Fee Details -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-indian-rupee-sign"></i>&nbsp; Fee Details</p>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="fTotalFees">Total Fees (₹)</label>
+                                <input type="number" id="fTotalFees" name="totalFees" placeholder="e.g. 90000" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn admin-btn-outline" id="modalCancelBtn" onclick="document.getElementById('addStudentBackdrop').querySelector('#modalCloseBtn').click()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="admin-btn admin-btn-primary">
+                        <i class="fa-solid fa-check"></i> Enrol Student
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- ─── Student Detail Drawer ────────────────── -->
+    <div class="drawer-overlay" id="studentDrawerOverlay">
+        <div class="drawer-panel" id="studentDrawer">
+            <div class="drawer-header">
+                <div>
+                    <h2 style="margin:0;font-size:1.125rem;" id="sDrawerName">—</h2>
+                    <p style="margin:0;font-size:0.8rem;color:#64748b;" id="sDrawerID">—</p>
+                </div>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                    <span id="sDrawerStatus"></span>
+                    <button class="drawer-close-btn" id="studentDrawerCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="drawer-body">
+                <div id="sDrawerRisk" style="display:none;background:#fef2f2;border:1px solid #fecaca;border-radius:0.5rem;padding:1rem;">
+                    <p style="margin:0;font-size:0.875rem;color:#ef4444;font-weight:600;"><i class="fa-solid fa-triangle-exclamation"></i> At-Risk Student</p>
+                    <p style="margin:0.25rem 0 0;font-size:0.8rem;color:#b91c1c;">Attendance below threshold. Immediate follow-up required.</p>
+                </div>
+                <div>
+                    <h3 style="margin:0 0 0.75rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Personal Info</h3>
+                    <div class="drawer-fields-grid">
+                        <div class="drawer-field"><span class="drawer-field-label">Phone</span><span class="drawer-field-value" id="sDrawerPhone">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Parent/Guardian</span><span class="drawer-field-value" id="sDrawerParent">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Date of Birth</span><span class="drawer-field-value" id="sDrawerDob">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Gender</span><span class="drawer-field-value" id="sDrawerGender">—</span></div>
+                    </div>
+                    <div class="drawer-field" style="margin-top:0.75rem;"><span class="drawer-field-label">Address</span><span class="drawer-field-value" id="sDrawerAddress">—</span></div>
+                </div>
+                <hr style="border:none;border-top:1px solid #e2e8f0;">
+                <div>
+                    <h3 style="margin:0 0 0.75rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Academic Details</h3>
+                    <div class="drawer-fields-grid">
+                        <div class="drawer-field"><span class="drawer-field-label">Course</span><span class="drawer-field-value" id="sDrawerCourse">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Program</span><span class="drawer-field-value" id="sDrawerProgram">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Class</span><span class="drawer-field-value" id="sDrawerClass">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Batch Timing</span><span class="drawer-field-value" id="sDrawerTiming">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Joining Date</span><span class="drawer-field-value" id="sDrawerJoining">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Target Year</span><span class="drawer-field-value" id="sDrawerTarget">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Attendance</span><span class="drawer-field-value" id="sDrawerAttendance">—</span></div>
+                    </div>
+                </div>
+                <hr style="border:none;border-top:1px solid #e2e8f0;">
+                <div>
+                    <h3 style="margin:0 0 0.75rem;font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Fee Summary</h3>
+                    <div class="drawer-fields-grid">
+                        <div class="drawer-field"><span class="drawer-field-label">Total Fees</span><span class="drawer-field-value" id="sDrawerTotalFees">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Amount Paid</span><span class="drawer-field-value" id="sDrawerPaid">—</span></div>
+                        <div class="drawer-field"><span class="drawer-field-label">Pending Dues</span><span class="drawer-field-value" id="sDrawerDues">—</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="drawer-actions">
+                <button class="admin-btn admin-btn-primary"><i class="fa-solid fa-money-bill"></i> Record Payment</button>
+                <button class="admin-btn admin-btn-outline"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Main App Layout ───────────────────────── -->
+    <div id="admin-app-container" style="display:flex; width:100%; overflow:hidden;">
+        <div class="admin-main-wrapper">
+            <main class="admin-content">
+
+                <div class="admin-page-header">
+                    <div>
+                        <h1 class="admin-page-title">Students</h1>
+                        <p class="admin-page-subtitle">Manage enrolled students and their academic progress.</p>
+                    </div>
+                    <button class="admin-btn admin-btn-primary" id="openAddStudentBtn">
+                        <i class="fa-solid fa-user-plus"></i> Add Student
+                    </button>
+                </div>
+
+                <div class="admin-table-container">
+                    <div class="filter-bar">
+                        <input type="text" id="studentSearch" placeholder="Search by name or student ID...">
+                        <select id="studentCourseFilter">
+                            <option value="">All Courses</option>
+                            <option>JEE</option>
+                            <option>NEET</option>
+                            <option>UPSC</option>
+                            <option>SAT</option>
+                        </select>
+                        <select id="studentStatusFilter">
+                            <option value="">All Statuses</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Course</th>
+                                <th>Program</th>
+                                <th>Class</th>
+                                <th>Attendance</th>
+                                <th>Dues</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/admin-data.js"></script>
+    <script src="../js/views/AdminLayout.js"></script>
+    <script src="../js/views/AdminStudents.js"></script>
+
+</body>
+
+</html>

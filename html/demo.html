@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching | Book Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body>
+    <nav class="navbar" id="global-navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="logo-text">Elite<span class="highlight">Academy</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="details.html" class="nav-link">Details & Pricing</a>
+            </div>
+            <div class="nav-actions">
+                <a href="admission.html" class="cta-btn primary-btn">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+    <main style="padding-top:100px;">
+        <div class="container section">
+            <h1 style="color:var(--clr-secondary); margin-bottom:0.5rem; text-align:center;">Book a Free Demo Class</h1>
+            <p style="color:var(--clr-text-muted); text-align:center; margin-bottom:3rem;">Experience our teaching
+                methodology before you make a decision.</p>
+
+            <div
+                style="max-width:600px; margin:0 auto; background:white; padding:2.5rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg);">
+                <form id="demo-form">
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Student Name *</label>
+                        <input type="text" required
+                            style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md);">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Phone Number *</label>
+                        <input type="tel" required
+                            style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md);">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Select Target Exam
+                            *</label>
+                        <select required
+                            style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md);">
+                            <option>JEE Main & Advanced</option>
+                            <option>NEET (UG)</option>
+                            <option>UPSC CSE</option>
+                            <option>SAT</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Preferred Date *</label>
+                        <input type="date" required
+                            style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md);">
+                    </div>
+                    <div style="margin-bottom:1.5rem;">
+                        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Mode of Class *</label>
+                        <div style="display:flex; gap:1.5rem;">
+                            <label><input type="radio" name="mode" value="online" checked> Online Live</label>
+                            <label><input type="radio" name="mode" value="offline"> Offline Classroom</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn" style="width:100%;">Confirm Booking <i
+                            class="fa-regular fa-calendar-check"></i></button>
+                </form>
+
+                <div id="demo-success" style="display:none; text-align:center; padding:2rem 0;">
+                    <i class="fa-solid fa-circle-check"
+                        style="font-size:4rem; color:var(--clr-success); margin-bottom:1rem;"></i>
+                    <h2 style="color:var(--clr-secondary); mb-2">Booking Confirmed!</h2>
+                    <p style="color:var(--clr-text-muted);">Our academic counselor will contact you shortly with the
+                        class link & details.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('demo-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+            setTimeout(() => {
+                e.target.style.display = 'none';
+                document.getElementById('demo-success').style.display = 'block';
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

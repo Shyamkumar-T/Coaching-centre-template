@@ -1,0 +1,126 @@
+/* ==========================================================================
+   BATCHES & SCHEDULE STYLES
+   ========================================================================== */
+
+.batch-card {
+    background: var(--clr-bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    border-left: 5px solid var(--clr-primary);
+    transition: var(--transition-normal);
+}
+
+.batch-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.batch-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--clr-border);
+    padding-bottom: var(--space-sm);
+}
+
+.batch-title h3 {
+    font-size: 1.5rem;
+    color: var(--clr-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.batch-course {
+    color: var(--clr-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.batch-mode {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: var(--clr-bg-main);
+    color: var(--clr-text-main);
+}
+
+.batch-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: 0.95rem;
+    color: var(--clr-text-muted);
+}
+
+.batch-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.batch-detail-item i {
+    color: var(--clr-primary);
+    width: 20px;
+}
+
+/* Availability Indicator */
+.seat-indicator {
+    height: 8px;
+    background-color: var(--clr-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.seat-fill {
+    height: 100%;
+    background-color: var(--clr-success);
+    transition: width 1s ease;
+}
+
+.seat-fill.warning {
+    background-color: var(--clr-accent);
+}
+
+.seat-fill.danger {
+    background-color: var(--clr-danger);
+}
+
+.batch-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+@media (min-width: 768px) {
+    .batch-card {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .batch-header {
+        border-bottom: none;
+        padding-bottom: 0;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .batch-details {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .batch-footer {
+        flex: 1;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+    }
+}

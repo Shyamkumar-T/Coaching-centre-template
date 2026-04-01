@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching Institute | Admissions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/Admission.css">
+    <link rel="stylesheet" href="../css/views/Courses.css"> <!-- for page header -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="global-navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="logo-text">Elite<span class="highlight">Academy</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="details.html" class="nav-link">Details & Pricing</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+            </div>
+            <div class="nav-actions">
+                <a href="admin-login.html" class="login-btn"><i class="fa-regular fa-user"></i> Admin Login</a>
+                <a href="admission.html" class="cta-btn primary-btn active">Apply Now</a>
+                <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="../index.html" class="mobile-link">Home</a>
+        <a href="courses.html" class="mobile-link">Courses</a>
+        <a href="details.html" class="mobile-link">Details & Pricing</a>
+        <a href="faculty.html" class="mobile-link">Faculty</a>
+        <a href="admission.html" class="mobile-link highlight-link">Apply for Admission</a>
+    </div>
+
+    <!-- Main Content -->
+    <main id="app">
+        <header class="page-header" style="padding-bottom: 8rem;">
+            <div class="container">
+                <h1 class="page-title">Admission Portal</h1>
+                <p class="page-subtitle" style="color:var(--clr-text-muted);">Secure your seat for the upcoming batches.
+                </p>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="admission-container">
+
+                <!-- Progress Tracker -->
+                <div class="progress-tracker" id="progress-tracker">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-circle">1</div><span>Course</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-circle">2</div><span>Details</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-circle">3</div><span>Documents</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-circle">4</div><span>Payment</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Course Selection -->
+                <div class="form-step active" id="step-1">
+                    <h2 style="margin-bottom: var(--space-md);">1. Choose Your Course & Batch</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Target Course *</label>
+                            <select id="form-course" required>
+                                <option value="">-- Select Course --</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Batch Category *</label>
+                            <select id="form-category" required>
+                                <option value="">-- Select Category --</option>
+                                <option value="1-year">1 Year Program (Drop)</option>
+                                <option value="2-year">2 Year Program (11th and 12th)</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Preferred Batch *</label>
+                            <select id="form-batch" required>
+                                <option value="">-- Select Batch --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions" style="justify-content: flex-end;">
+                        <button class="primary-btn next-btn" data-next="2">Next Step <i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Student Details -->
+                <div class="form-step" id="step-2">
+                    <h2 style="margin-bottom: var(--space-md);">2. Applicant Details</h2>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Full Name *</label><input type="text" required></div>
+                        <div class="form-group"><label>Email Address *</label><input type="email" required></div>
+                        <div class="form-group"><label>Student Phone *</label><input type="tel" required></div>
+                        <div class="form-group"><label>Parent/Guardian Contact *</label><input type="tel" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="outline-btn prev-btn" data-prev="1"><i class="fa-solid fa-arrow-left"></i>
+                            Back</button>
+                        <button class="primary-btn next-btn" data-next="3">Next Step <i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Documents Upload -->
+                <div class="form-step" id="step-3">
+                    <h2 style="margin-bottom: var(--space-md);">3. Upload Documents</h2>
+                    <div class="form-group">
+                        <label>Recent Passport Size Photo *</label>
+                        <div class="file-upload-area" onclick="document.getElementById('upload-photo').click()">
+                            <i class="fa-regular fa-image"></i>
+                            <p>Click to browse</p><input type="file" id="upload-photo" hidden accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="outline-btn prev-btn" data-prev="2"><i class="fa-solid fa-arrow-left"></i>
+                            Back</button>
+                        <button class="primary-btn next-btn" data-next="4">Next Step <i
+                                class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Payment -->
+                <div class="form-step" id="step-4">
+                    <h2 style="margin-bottom: var(--space-md);">4. Registration & Payment</h2>
+                    <div style="background:var(--clr-bg-main); padding:var(--space-md); margin-bottom:var(--space-md);">
+                        <h3 id="payment-fee-display">Total Payable: $0.00</h3>
+                    </div>
+                    <div class="form-group"><label><input type="checkbox" id="terms-check" required> I agree to
+                            terms.</label></div>
+                    <div class="form-actions">
+                        <button class="outline-btn prev-btn" data-prev="3"><i class="fa-solid fa-arrow-left"></i>
+                            Back</button>
+                        <button class="primary-btn" id="submit-btn" style="background-color:var(--clr-success);"><i
+                                class="fa-solid fa-lock"></i> Submit Payment & Apply</button>
+                    </div>
+                </div>
+
+                <!-- Success -->
+                <div class="form-step" id="step-5">
+                    <div class="success-message">
+                        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <h2>Application Submitted!</h2>
+                        <a href="student-dashboard.html" class="primary-btn mt-2">Go to Dashboard</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../js/data.js?v=2"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const courseSelect = document.getElementById('form-course');
+            const categorySelect = document.getElementById('form-category');
+            const batchSelect = document.getElementById('form-batch');
+
+            // Populate
+            const courses = window.DB.courses;
+            const batches = window.DB.batches;
+
+            courses.forEach(c => {
+                courseSelect.innerHTML += `<option value="${c.course_id}">${c.name}</option>`;
+            });
+            batches.forEach(b => {
+                batchSelect.innerHTML += `<option value="${b.batch_id}" data-course="${b.course_id}">${b.name} (${b.start_date})</option>`;
+            });
+
+            // Pre-select via URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const preSelected = urlParams.get('course');
+            const preSelectedBatchId = urlParams.get('batch');
+
+            if (preSelected) {
+                courseSelect.value = preSelected;
+            }
+            // Freedom to modify: preSelectBatchId is used to set the initial value, but it's not locked.
+            // Also, we optionally set category based on the preSelectedBatchId if we want to guess
+            if (preSelectedBatchId) {
+                const batchData = batches.find(b => b.batch_id === preSelectedBatchId);
+                // Try to infer a category if it's a full day drop batch, but since all options are available they can change it.
+                if (batchData && batchData.name.includes('Full Day')) {
+                    categorySelect.value = '1-year'; // Default guess for drop
+                } else if (batchData) {
+                    categorySelect.value = '2-year';
+                }
+            }
+
+            // Filtering
+            const filterBatches = () => {
+                const cId = courseSelect.value;
+                let hasVisibleOptions = false;
+
+                Array.from(batchSelect.options).forEach(opt => {
+                    if (!opt.value) return; // Skip placeholder
+                    const bCourseId = opt.getAttribute('data-course');
+
+                    // Filter only by course! Give them freedom for category & batch choices
+                    if (cId) {
+                        if (bCourseId === cId) {
+                            opt.style.display = 'block';
+                            hasVisibleOptions = true;
+                        } else {
+                            opt.style.display = 'none';
+                        }
+                    } else {
+                        // Hide all options if no course is selected
+                        opt.style.display = 'none';
+                    }
+                });
+
+                // Set fee display
+                const courseData = courses.find(c => c.course_id === cId);
+                const catId = categorySelect.value;
+                let feeText = 'Total Payable: $0.00';
+
+                if (courseData) {
+                    let baseFee = parseInt(courseData.fee.replace(/[^0-9]/g, ''), 10);
+
+                    // Add escalating price for 2 Year program regardless of batch
+                    if (catId === '2-year') {
+                        baseFee += 1000;
+                    }
+
+                    feeText = `Total Payable: $${baseFee.toLocaleString()}`;
+                }
+                document.getElementById('payment-fee-display').innerText = feeText;
+
+                // Reset batch selection if previously selected batch is now hidden
+                const selectedBatchOpt = batchSelect.options[batchSelect.selectedIndex];
+                if (selectedBatchOpt && selectedBatchOpt.style.display === 'none') {
+                    batchSelect.value = '';
+                }
+            };
+
+            courseSelect.addEventListener('change', filterBatches);
+            // Category select doesn't constrain batches anymore, the user has freedom.
+
+            if (preSelected || preSelectedBatchId) {
+                filterBatches();
+                if (preSelectedBatchId) {
+                    setTimeout(() => { batchSelect.value = preSelectedBatchId; }, 20);
+                }
+            } else {
+                filterBatches(); // Run once to hide all batches initially
+            }
+
+
+            // Navigation
+            const showStep = (stepNumber) => {
+                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                document.getElementById(`step-${stepNumber}`).classList.add('active');
+
+                if (stepNumber <= 4) {
+                    document.querySelectorAll('.progress-step').forEach(p => {
+                        const idx = parseInt(p.getAttribute('data-step'));
+                        p.classList.remove('active', 'completed');
+                        if (idx < stepNumber) p.classList.add('completed');
+                        else if (idx == stepNumber) p.classList.add('active');
+                    });
+                }
+            };
+
+            document.querySelectorAll('.next-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // basic validation
+                    showStep(btn.getAttribute('data-next'));
+                });
+            });
+            document.querySelectorAll('.prev-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    showStep(btn.getAttribute('data-prev'));
+                });
+            });
+
+            document.getElementById('submit-btn').addEventListener('click', () => {
+                if (document.getElementById('terms-check').checked) {
+                    window.DB.loginStudent();
+                    showStep(5);
+                } else alert('Agree to terms');
+            });
+        });
+    </script>
+</body>
+
+</html>

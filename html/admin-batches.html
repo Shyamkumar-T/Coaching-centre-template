@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batches | EliteAcademy ERP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/AdminLayout.css">
+    <link rel="stylesheet" href="../css/views/AdminEnquiries.css">
+    <link rel="stylesheet" href="../css/views/AdminStudents.css">
+    <link rel="stylesheet" href="../css/views/AdminBatches.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- ─── Success Toast ──────────────────────────── -->
+    <div id="batchToast" style="display:none;position:fixed;bottom:2rem;right:2rem;z-index:999;background:#10b981;color:white;padding:0.875rem 1.5rem;border-radius:0.625rem;font-weight:600;font-size:0.875rem;box-shadow:0 8px 20px rgba(0,0,0,0.15);"></div>
+
+    <!-- ─── Create Batch Modal ─────────────────────── -->
+    <div class="modal-backdrop" id="createBatchBackdrop">
+        <div class="modal-box" style="max-width:680px;">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title"><i class="fa-solid fa-calendar-plus" style="color:#4F46E5;margin-right:0.5rem;"></i>Create New Batch</h2>
+                    <p class="modal-subtitle">Fill in the details. Class sections are assigned automatically.</p>
+                </div>
+                <button class="modal-close" id="batchModalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="createBatchForm">
+                <div class="modal-body">
+
+                    <!-- ── Batch Identity ── -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-tag"></i>&nbsp; Batch Identity</p>
+                        <div class="form-grid">
+                            <div class="form-field full-width">
+                                <label for="bName">Batch Name *</label>
+                                <input type="text" id="bName" name="batchName" placeholder="e.g. JEE Morning Freshers 2026–27 Batch A" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="bCode">Batch Code (optional)</label>
+                                <input type="text" id="bCode" name="batchCode" placeholder="Auto-generated if left blank">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Course ── -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-graduation-cap"></i>&nbsp; Course &amp; Program</p>
+                        <div class="form-grid">
+
+                            <!-- Course dropdown + manual -->
+                            <div class="form-field">
+                                <label for="bCourse">Course *</label>
+                                <select id="bCourse">
+                                    <option value="">— Select Course —</option>
+                                    <option value="JEE">JEE (Engineering)</option>
+                                    <option value="NEET">NEET (Medical)</option>
+                                    <option value="UPSC">UPSC (Civil Services)</option>
+                                    <option value="SAT">SAT (International)</option>
+                                    <option value="__other__">✏️ Other (type manually)</option>
+                                </select>
+                                <input type="text" id="bCourseCustom" name="course"
+                                    class="custom-override" style="display:none;margin-top:0.4rem;"
+                                    placeholder="Enter course name (e.g. Foundation, CLAT…)">
+                            </div>
+
+                            <!-- Program dropdown + manual -->
+                            <div class="form-field">
+                                <label for="bProgram">Program Type *</label>
+                                <select id="bProgram">
+                                    <option value="">— Select Program —</option>
+                                    <option value="2 Years Program">2 Years Program</option>
+                                    <option value="1 Year Program (Drop)">1 Year Program (Drop / Repeater)</option>
+                                    <option value="__other__">✏️ Other (type manually)</option>
+                                </select>
+                                <input type="text" id="bProgramCustom" name="category"
+                                    class="custom-override" style="display:none;margin-top:0.4rem;"
+                                    placeholder="Enter program name (e.g. 6 Month Crash…)">
+                            </div>
+
+                            <!-- Batch Year dropdown + manual -->
+                            <div class="form-field">
+                                <label for="bBatchYear">Batch Year / Category *</label>
+                                <select id="bBatchYear">
+                                    <option value="">— Select Program First —</option>
+                                </select>
+                                <input type="text" id="bBatchYearCustom" name="batchYear"
+                                    class="custom-override" style="display:none;margin-top:0.4rem;"
+                                    placeholder="Enter batch category (e.g. Intensive, Weekend…)">
+                            </div>
+
+                            <!-- Timing dropdown + manual -->
+                            <div class="form-field">
+                                <label for="bTiming">Timing *</label>
+                                <select id="bTiming">
+                                    <option value="">— Select Timing —</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Evening">Evening</option>
+                                    <option value="Full Day">Full Day</option>
+                                    <option value="Weekend">Weekend</option>
+                                    <option value="Online">Online (any time)</option>
+                                    <option value="__other__">✏️ Other (type manually)</option>
+                                </select>
+                                <input type="text" id="bTimingCustom" name="timing"
+                                    class="custom-override" style="display:none;margin-top:0.4rem;"
+                                    placeholder="Enter timing (e.g. Sat-Sun 6–9 PM)">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ── Class Sections ── -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-solid fa-layer-group"></i>&nbsp; Class Sections</p>
+
+                        <!-- Auto-preview tags -->
+                        <div class="class-tags" id="batchClassTags">
+                            <span style="color:#94a3b8;font-size:0.8rem;">Select batch year above to auto-fill class codes</span>
+                        </div>
+
+                        <!-- Always-visible manual override -->
+                        <div class="form-field" style="margin-top:0.75rem;">
+                            <label for="bClassesCustom">
+                                Custom Class Codes
+                                <span style="font-weight:400;color:#94a3b8;font-size:0.75rem;">(comma-separated — overrides auto if filled)</span>
+                            </label>
+                            <input type="text" id="bClassesCustom" name="classesCustom"
+                                placeholder="e.g. XR01, XR02, XR03   or leave blank to use auto codes">
+                        </div>
+
+                        <p style="margin:0.4rem 0 0;font-size:0.75rem;color:#94a3b8;">
+                            <i class="fa-solid fa-circle-info"></i>&nbsp;
+                            Auto: FR01–FR04 (Freshers) · SR01–SR04 (Senior) · DR01–DR03 (Drop)
+                        </p>
+                    </div>
+
+                    <!-- ── Schedule & Capacity ── -->
+                    <div>
+                        <p class="modal-section-title"><i class="fa-regular fa-calendar-days"></i>&nbsp; Schedule &amp; Capacity</p>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="bStartDate">Start Date *</label>
+                                <input type="date" id="bStartDate" name="startDate" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="bEndDate">End Date *</label>
+                                <input type="date" id="bEndDate" name="endDate" required>
+                            </div>
+                            <div class="form-field full-width">
+                                <label for="bSchedule">Schedule Description *</label>
+                                <input type="text" id="bSchedule" name="schedule"
+                                    placeholder="e.g. Mon-Sat, 8:00 AM – 12:00 PM" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="bCapacity">Total Seat Capacity *</label>
+                                <input type="number" id="bCapacity" name="capacity"
+                                    placeholder="e.g. 40" min="1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="bFaculty">Faculty / Instructor</label>
+                                <input type="text" id="bFaculty" name="faculty"
+                                    placeholder="e.g. Dr. Ramesh Kumar">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn admin-btn-outline" id="batchModalCancelBtn">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary">
+                        <i class="fa-solid fa-check"></i> Create Batch
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ─── Main App Layout ────────────────────────── -->
+    <div id="admin-app-container" style="display:flex; width:100%; overflow:hidden;">
+        <div class="admin-main-wrapper">
+
+            <main class="admin-content">
+
+                <div class="admin-page-header">
+                    <div>
+                        <h1 class="admin-page-title">Batches</h1>
+                        <p class="admin-page-subtitle">Manage batch schedules, class sections, and capacity.</p>
+                    </div>
+                    <button class="admin-btn admin-btn-primary" id="openCreateBatchBtn">
+                        <i class="fa-solid fa-plus"></i> Create Batch
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-bar" style="background:white;border:1px solid #e2e8f0;border-radius:0.75rem;margin-bottom:1.5rem;">
+                    <select id="batchCourseFilter">
+                        <option value="">All Courses</option>
+                        <option>JEE</option>
+                        <option>NEET</option>
+                        <option>UPSC</option>
+                        <option>SAT</option>
+                    </select>
+                    <select id="batchTimingFilter">
+                        <option value="">All Timings</option>
+                        <option>Morning</option>
+                        <option>Evening</option>
+                        <option>Full Day</option>
+                    </select>
+                    <select id="batchCategoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="2 Years Program">2 Years Program (FR / SR)</option>
+                        <option value="1 Year Program (Drop)">1 Year Program — Drop/Repeater</option>
+                    </select>
+                </div>
+
+                <!-- Batches Card Grid -->
+                <div class="batches-grid" id="batchesGrid">
+                    <!-- Injected by AdminBatches.js -->
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/admin-data.js"></script>
+    <script src="../js/views/AdminLayout.js"></script>
+    <script src="../js/views/AdminBatches.js"></script>
+
+</body>
+
+</html>

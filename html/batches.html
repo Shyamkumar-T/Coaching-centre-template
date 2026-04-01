@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching | Batches & Schedule</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/Batches.css">
+    <link rel="stylesheet" href="../css/views/Courses.css"> <!-- for page header -->
+</head>
+
+<body>
+    <nav class="navbar" id="global-navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="logo-text">Elite<span class="highlight">Academy</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link">Courses</a>
+                <a href="details.html" class="nav-link">Details & Pricing</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+            </div>
+            <div class="nav-actions">
+                <a href="admin-login.html" class="login-btn"><i class="fa-regular fa-user"></i> Admin Login</a>
+                <a href="admission.html" class="cta-btn primary-btn">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+    <main id="app">
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-title">Batch Schedules & Availability</h1>
+                <p class="page-subtitle" style="color:var(--clr-text-muted);">Stay updated with the latest batch timings
+                    and secure your seat before they are filled.</p>
+            </div>
+        </header>
+
+        <section class="section">
+            <div class="container">
+                <div class="batches-list" id="batches-container"></div>
+            </div>
+        </section>
+    </main>
+    <script src="../js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const batches = window.DB.batches;
+            const courses = window.DB.courses;
+
+            document.getElementById('batches-container').innerHTML = batches.map(b => {
+                const course = courses.find(c => c.course_id === b.course_id);
+                const percentFilled = Math.round((b.enrolled / b.capacity) * 100);
+                let statusClass = 'success';
+                if (percentFilled > 75) statusClass = 'warning';
+                if (percentFilled > 95) statusClass = 'danger';
+
+                return \`
+                    <div class="batch-card">
+                        <div class="batch-header">
+                            <div class="batch-title">
+                                <h3>\${b.name}</h3>
+                                <div class="batch-course">\${course ? course.name : ''}</div>
+                            </div>
+                            <div class="batch-mode" style="margin-top:0.5rem;">\${b.mode}</div>
+                        </div>
+                        <div class="batch-details">
+                            <div class="batch-detail-item"><i class="fa-regular fa-calendar-days"></i> \${b.start_date}</div>
+                            <div class="batch-detail-item"><i class="fa-regular fa-clock"></i> \${b.timings}</div>
+                            <div style="width: 100%; max-width: 250px;">
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                                    <span>Seats Filled: \${b.enrolled}/\${b.capacity}</span>
+                                    <span class="clr-\${statusClass}">\${percentFilled}%</span>
+                                </div>
+                                <div class="seat-indicator"><div class="seat-fill \${statusClass}" style="width: \${percentFilled}%"></div></div>
+                            </div>
+                        </div>
+                        <div class="batch-footer">
+                            <a href="admission.html?course=\${b.course_id}" class="primary-btn">Enroll in Batch</a>
+                        </div>
+                    </div>
+                \`;
+            }).join('');
+        });
+    </script>
+</body>
+
+</html>

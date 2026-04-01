@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching Institute | Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/views/Courses.css">
+    <link rel="stylesheet" href="../css/views/Home.css"> <!-- for course-cards -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="global-navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="logo-text">Elite<span class="highlight">Academy</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="courses.html" class="nav-link active">Courses</a>
+                <a href="details.html" class="nav-link">Details & Pricing</a>
+                <a href="faculty.html" class="nav-link">Faculty</a>
+            </div>
+            <div class="nav-actions">
+                <a href="admin-login.html" class="login-btn"><i class="fa-regular fa-user"></i> Admin Login</a>
+                <a href="admission.html" class="cta-btn primary-btn">Apply Now</a>
+                <button class="menu-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="../index.html" class="mobile-link">Home</a>
+        <a href="about.html" class="mobile-link">About Us</a>
+        <a href="courses.html" class="mobile-link active">Courses</a>
+        <a href="details.html" class="mobile-link">Details & Pricing</a>
+        <a href="faculty.html" class="mobile-link">Faculty</a>
+        <a href="admission.html" class="mobile-link highlight-link">Apply for Admission</a>
+        <a href="admin-login.html" class="mobile-link">Admin Login</a>
+    </div>
+
+    <!-- Main Content -->
+    <main id="app">
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-title">Explore Our Programs</h1>
+                <p class="page-subtitle" style="color:var(--clr-text-muted); margin-bottom: 1rem;">Comprehensive
+                    learning paths designed to
+                    help you excel in your target examinations. We provide expert coaching for <strong>JEE, NEET, and
+                        UPSC</strong>.</p>
+                <div class="batch-classification"
+                    style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <div class="badge"
+                        style="background: rgba(37, 99, 235, 0.1); color: #2563eb; padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(37, 99, 235, 0.2);">
+                        <i class="fa-solid fa-calendar-check"></i> <strong>Drop Batch:</strong> Intensive 1-Year Program
+                    </div>
+                    <div class="badge"
+                        style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid rgba(34, 197, 94, 0.2);">
+                        <i class="fa-solid fa-graduation-cap"></i> <strong>Foundation Batch:</strong> Comprehensive
+                        2-Year Program
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select class="filter-select">
+                        <option>All Categories</option>
+                        <option>Engineering (JEE)</option>
+                        <option>Medical (NEET)</option>
+                        <option>Civil Services (UPSC)</option>
+                        <option>Study Abroad (SAT)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="courses-grid-full" id="course-grid"></div>
+        </section>
+
+        <!-- Course Modal -->
+        <div id="course-modal" class="course-detail-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Name</h2>
+                    <button class="close-btn" id="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div style="display:flex; gap: var(--space-md); flex-wrap: wrap;">
+                        <img id="modal-img" src=""
+                            style="width:100%; max-width:300px; border-radius:var(--radius-md); object-fit:cover;">
+                        <div style="flex:1; min-width: 250px;">
+                            <h3 style="margin-bottom: 0.5rem; color: var(--clr-primary);">About Course</h3>
+                            <p id="modal-desc" style="color: var(--clr-text-muted); margin-bottom: 1rem;"></p>
+                            <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                                <span class="course-badge" style="position:static; display:inline-block;"><i
+                                        class="fa-regular fa-clock"></i> <span id="modal-duration"></span></span>
+                            </div>
+                            <h3 style="margin-top: 1rem;">Syllabus</h3>
+                            <ul class="syllabus-list" id="modal-syllabus"></ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem; text-align:right;">
+                        <a href="admission.html" id="modal-apply-btn" class="primary-btn">Proceed to Admission <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer base (Simplified to save tokens) -->
+    <footer class="global-footer" id="global-footer" style="margin-top:50px; padding: 2rem;">
+        <div style="text-align:center; color:#ccc;">&copy; 2026 Elite Academy. All rights reserved. <br><a
+                href="admin.html" style="color:#666; text-decoration:none;">Admin</a></div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/data.js?v=2"></script>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const courses = window.DB.courses;
+            const batches = window.DB.batches;
+
+            const renderGrid = (filteredCourses) => {
+                const courseIds = filteredCourses.map(c => c.course_id);
+                // Get all batches belonging to those filtered courses
+                const filteredBatches = batches.filter(b => courseIds.includes(b.course_id));
+
+                document.getElementById('course-grid').innerHTML = filteredBatches.map(b => {
+                    const c = courses.find(course => course.course_id === b.course_id);
+                    return `
+                        <div class="course-card">
+                            <div class="course-badge"><i class="fa-solid ${c.icon}"></i> ${c.target_exam}</div>
+                            <img src="${c.image}" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title" style="font-size: 1.1rem;">${b.name}</h3>
+                                <h4 style="color: var(--clr-primary); font-size: 0.9rem; margin-bottom: 0.5rem;">${c.name}</h4>
+                                <p class="course-desc" style="font-size: 0.9rem;"><strong>Timings:</strong> ${b.timings} <br> <strong>Mode:</strong> ${b.mode}</p>
+                                <div class="course-meta">
+                                    <div><i class="fa-regular fa-clock"></i> ${c.duration}</div>
+                                </div>
+                                <div style="display:flex; gap: 0.5rem;">
+                                    <button class="outline-btn view-details-btn" data-course-id="${c.course_id}" data-batch-id="${b.batch_id}" style="flex:1;">Details</button>
+                                    <a href="admission.html?course=${c.course_id}&batch=${b.batch_id}" class="primary-btn" style="flex:1;">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Modal Logic
+                const modal = document.getElementById('course-modal');
+                document.querySelectorAll('.view-details-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const courseId = e.target.getAttribute('data-course-id');
+                        const batchId = e.target.getAttribute('data-batch-id');
+                        const course = courses.find(c => c.course_id === courseId);
+                        const batch = batches.find(b => b.batch_id === batchId);
+
+                        document.getElementById('modal-title').innerText = batch.name;
+                        document.getElementById('modal-img').src = course.image;
+                        document.getElementById('modal-desc').innerHTML = `<strong>Course:</strong> ${course.name}<br/>${course.description}<br/><br/><strong>Timings:</strong> ${batch.timings}<br/><strong>Start Date:</strong> ${batch.start_date}<br/><strong>Mode:</strong> ${batch.mode}`;
+                        document.getElementById('modal-duration').innerText = course.duration;
+                        document.getElementById('modal-duration').innerText = course.duration;
+                        document.getElementById('modal-apply-btn').href = `admission.html?course=${course.course_id}&batch=${batch.batch_id}`;
+                        document.getElementById('modal-syllabus').innerHTML = course.syllabus.map(s => `<li>${s}</li>`).join('');
+                        modal.classList.add('show');
+                    });
+                });
+            };
+
+            // Initial Render all courses -> all batches
+            renderGrid(courses);
+
+            document.getElementById('close-modal').addEventListener('click', () => document.getElementById('course-modal').classList.remove('show'));
+
+            // Filter logic for batches
+            const filterSelect = document.querySelector('.filter-select');
+            // Check if filterSelect exists to avoid runtime errors
+            if (filterSelect) {
+                filterSelect.addEventListener('change', (e) => {
+                    const category = e.target.value;
+                    const filteredCourses = category === 'All Categories' ? courses : courses.filter(c => category.includes(c.target_exam) || category.includes(c.category));
+                    renderGrid(filteredCourses);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

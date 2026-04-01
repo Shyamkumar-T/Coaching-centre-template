@@ -1,0 +1,113 @@
+/* Batches Module Styles */
+.batches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem;
+}
+
+.batch-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    transition: box-shadow 0.2s;
+}
+
+.batch-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.batch-card-header {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.batch-course-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.batch-card-body {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.batch-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #64748b;
+}
+
+.batch-meta-row i {
+    width: 14px;
+    color: #94a3b8;
+}
+
+.batch-occupancy-wrap {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.batch-occupancy-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #334155;
+}
+
+.batch-occ-bar-bg {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+.batch-occ-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.course-jee .batch-course-icon { background: #e0e7ff; color: #4F46E5; }
+.course-neet .batch-course-icon { background: #d1fae5; color: #065f46; }
+.course-upsc .batch-course-icon { background: #fef3c7; color: #92400e; }
+.course-sat .batch-course-icon { background: #fce7f3; color: #9d174d; }
+
+.course-jee .batch-occ-bar-fill { background: #4F46E5; }
+.course-neet .batch-occ-bar-fill { background: #10b981; }
+.course-upsc .batch-occ-bar-fill { background: #f59e0b; }
+/* "Other" custom override input animation */
+.custom-override {
+    animation: slideDown 0.2s ease;
+    border: 1.5px dashed #4F46E5 !important;
+    background: #f5f3ff !important;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Inline note under a field */
+.field-note {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin: 0.25rem 0 0;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Coaching | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+</head>
+
+<body style="background:var(--clr-bg-main);">
+    <div style="min-height: 100vh; display:flex; align-items:center; justify-content:center; padding: var(--space-xl);">
+        <div
+            style="background:white; padding:var(--space-2xl) var(--space-xl); border-radius:var(--radius-lg); box-shadow:var(--shadow-lg); width:100%; max-width:450px;">
+            <div style="text-align:center; margin-bottom: 2rem;">
+                <div class="logo" style="justify-content:center; margin-bottom:1rem; font-size:2rem;">
+                    <i class="fa-solid fa-graduation-cap" style="color:var(--clr-primary);"></i>
+                    <span class="logo-text"
+                        style="color:var(--clr-secondary); font-weight:800; font-size:1.5rem;">Elite<span
+                            class="highlight" style="color:var(--clr-primary);">Academy</span></span>
+                </div>
+                <h2 style="color:var(--clr-secondary);">Welcome Back!</h2>
+                <p style="color:var(--clr-text-muted);">Please login to your account</p>
+                <div
+                    style="background: #e0f2fe; color: #0284c7; padding: 0.5rem; text-align: left; font-size: 0.8rem; border-radius: var(--radius-md); margin-top: 1rem;">
+                    <strong>Demo Hint:</strong> Use any email containing "admin" for Admin Dashboard, or any other email
+                    for Student Dashboard.
+                </div>
+            </div>
+
+            <form id="login-form">
+                <div style="margin-bottom:var(--space-md);">
+                    <label
+                        style="display:block; font-weight:600; margin-bottom:0.5rem; color:var(--clr-text-main);">Email
+                        Address / ID</label>
+                    <input type="text" id="login-id" required placeholder="example@email.com or Student ID"
+                        style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md); font-size:1rem;">
+                </div>
+
+                <div style="margin-bottom:1rem;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                        <label style="font-weight:600; color:var(--clr-text-main);">Password</label>
+                        <a href="#" style="font-size:0.875rem; color:var(--clr-primary);">Forgot Password?</a>
+                    </div>
+                    <input type="password" id="login-pass" required placeholder="••••••••"
+                        style="width:100%; padding:0.75rem; border:1px solid var(--clr-border); border-radius:var(--radius-md); font-size:1rem;">
+                </div>
+
+                <div style="margin-bottom:var(--space-lg); display:flex; align-items:center;">
+                    <input type="checkbox" id="remember-me" style="margin-right:0.5rem;">
+                    <label for="remember-me"
+                        style="font-weight:normal; margin-bottom:0; font-size:0.9rem; color:var(--clr-text-muted);">Remember
+                        me</label>
+                </div>
+
+                <button type="submit" class="primary-btn" style="width:100%;">Login to Portal <i
+                        class="fa-solid fa-arrow-right-to-bracket"></i></button>
+
+                <div
+                    style="text-align:center; margin-top:2rem; padding-top:1rem; border-top:1px solid var(--clr-border);">
+                    <p style="color:var(--clr-text-muted); font-size:0.9rem;">
+                        Don't have an account? <br>
+                        <a href="admission.html"
+                            style="font-weight:600; margin-top:0.5rem; display:inline-block; color:var(--clr-primary);">Apply
+                            for Admission First</a>
+                    </p>
+                    <p style="margin-top: 1rem;"><a href="../index.html"
+                            style="color:var(--clr-text-muted); font-size:0.8rem;"><i
+                                class="fa-solid fa-arrow-left"></i> Back to Home</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../js/data.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('login-id').value.toLowerCase();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                if (id.includes('admin')) {
+                    window.DB.loginAdmin();
+                    window.location.href = 'admin.html';
+                } else {
+                    window.DB.loginStudent();
+                    window.location.href = 'student-dashboard.html';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

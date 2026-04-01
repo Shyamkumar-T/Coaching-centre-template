@@ -1,0 +1,181 @@
+/* Admin Dashboard Overview Styles */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-left: 4px solid transparent;
+}
+
+.stat-card.blue { border-left-color: #4F46E5; }
+.stat-card.green { border-left-color: #10b981; }
+.stat-card.amber { border-left-color: #f59e0b; }
+.stat-card.red { border-left-color: #ef4444; }
+
+.stat-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.25rem 0;
+}
+
+.stat-change {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.stat-change.up { color: #10b981; }
+.stat-change.down { color: #ef4444; }
+
+/* Charts Row */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Chart bars */
+.chart-container {
+    padding: 1.5rem;
+}
+
+.chart-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    color: #0f172a;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    height: 180px;
+}
+
+.bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100%;
+}
+
+.bar {
+    width: 16px;
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.bar:hover { opacity: 0.8; }
+.bar.bar-enroll { background-color: #4F46E5; }
+.bar.bar-revenue { background-color: #c7d2fe; }
+
+.bar-label {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #64748b;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+/* Batch Occupancy Card */
+.occupancy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.occupancy-item-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    color: #334155;
+}
+
+.occupancy-bar-bg {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+.occupancy-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.fill-blue { background-color: #4F46E5; }
+.fill-green { background-color: #10b981; }
+.fill-amber { background-color: #f59e0b; }
+.fill-red { background-color: #ef4444; }
+
+/* Recent Activity Table */
+.recent-table-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.875rem;
+}
+
+.recent-table-row:last-child { border-bottom: none; }
